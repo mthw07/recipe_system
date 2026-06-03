@@ -36,3 +36,9 @@ My GitHub account:
         <a href="https://github.com/mthw07" style="display:block;">mthw07</a>
       </td>
   </div>
+
+
+
+# Some sources
+I do not remember, if we've learnt how to sort a list by a specific element. But I've found out how to do it using the _key_ and _lambda_ function. \
+Here is the link to my source: https://docs.python.org/3/howto/sorting.html 
