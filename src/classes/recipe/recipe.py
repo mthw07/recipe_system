@@ -19,11 +19,14 @@ class Recipe:
         return False
         
     def scale(self, ratio:float):
-        new_ingredients = []
-        for ingredient in self.ingredients:
-            new_ingredient = Ingredient(ingredient.name, ingredient.quantity * ratio, ingredient.unit)
-            new_ingredients.append(new_ingredient)
-        return Recipe(self.title, new_ingredients)
+        if(not self.is_valid_ratio(ratio)):
+            raise ValueError("Коэффициент должен быть положительным")
+        else:
+            new_ingredients = []
+            for ingredient in self.ingredients:
+                new_ingredient = Ingredient(ingredient.name, ingredient.quantity * ratio, ingredient.unit)
+                new_ingredients.append(new_ingredient)
+            return Recipe(self.title, new_ingredients)
     
     def __len__(self):
         return len(self.ingredients)
