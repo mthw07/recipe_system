@@ -21,7 +21,7 @@ class Ingredient:
         def __repr__(self):
             return f"Ingredient('{self.name}', {self.quantity},'{self.unit}')"
         
-        def __eq__(self, other: Ingredient):
+        def __eq__(self, other: 'Ingredient'):
             if (other.name == self.name and other.unit == self.unit):
                 return True
             return False
