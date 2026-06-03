@@ -41,4 +41,6 @@ My GitHub account:
 
 # Some sources
 I do not remember, if we've learnt how to sort a list by a specific element. But I've found out how to do it using the _key_ and _lambda_ function. \
-Here is the link to my source: https://docs.python.org/3/howto/sorting.html 
+Here is the link to my source: https://docs.python.org/3/howto/sorting.html \
+I also do not remember us practising with pytest (especially _with pytest.raises(...)_ construction). \
+But I've found all the neccessary information here: https://docs.pytest.org/en/stable/how-to/assert.html
