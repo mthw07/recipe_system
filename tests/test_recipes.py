@@ -59,3 +59,56 @@ def test_recipe_len():
     recipe = Recipe("Блюдо", [ingredient1, ingredient2])
     assert len(recipe) == 2
     
+def test_shopping_list_add_recipe():
+    ingredient1 = Ingredient("Мука", 500.0, "г")
+    ingredient2 = Ingredient("Сахар", 500.0, "г")
+    recipe = Recipe("Блюдо", [ingredient1, ingredient2])
+    shopping_list = ShoppingList()
+    shopping_list.add_recipe(recipe, 1)
+    assert shopping_list.get_list()[0] == ingredient1
+    assert shopping_list.get_list()[1] == ingredient2
+    shopping_list.add_recipe(recipe, 2)
+    assert shopping_list.get_list()[0] == Ingredient("Мука", 1500.0, "г")
+    assert shopping_list.get_list()[1] == Ingredient("Сахар", 1500.0, "г")
+    with pytest.raises(ValueError):
+        shopping_list.add_recipe(recipe, -1)
+
+def test_shopping_list_remove_recipe():
+    ingredient1 = Ingredient("Мука", 500.0, "г")
+    ingredient2 = Ingredient("Сахар", 500.0, "г")
+    recipe1 = Recipe("Блюдо", [ingredient1, ingredient2])
+    shopping_list = ShoppingList()
+    shopping_list.add_recipe(recipe1, 1)
+    shopping_list.remove_recipe("Блюдо")
+    assert len(shopping_list.get_list()) == 0
+    shopping_list.add_recipe(recipe1, 1)
+    shopping_list.remove_recipe("Несуществующее Блюдо")
+    assert len(shopping_list.get_list()) == 2
+
+def test_shopping_list_get_list():
+    ingredient1 = Ingredient("Амука", 500.0, "г")
+    ingredient2 = Ingredient("Бсахар", 500.0, "г")
+    recipe1 = Recipe("Блюдо 1", [ingredient1, ingredient2])
+    recipe2 = Recipe("Блюдо 2", [ingredient1])
+    shopping_list = ShoppingList()
+    shopping_list.add_recipe(recipe1, 1)
+    shopping_list.add_recipe(recipe2, 1)
+    ingredients = shopping_list.get_list()
+    assert len(ingredients) == 2
+    assert ingredients[0] == Ingredient("Амука", 1000.0, "г")
+    assert ingredients[1] == Ingredient("Бсахар", 500.0, "г")
+
+def test_shopping_list_add():
+    ingredient1 = Ingredient("Мука", 500.0, "г")
+    ingredient2 = Ingredient("Сахар", 500.0, "г")
+    shopping_list1 = ShoppingList()
+    shopping_list2 = ShoppingList()
+    shopping_list1.add_recipe(Recipe("Блюдо 1", [ingredient1]), 1)
+    shopping_list2.add_recipe(Recipe("Блюдо 2", [ingredient2]), 1)
+    combined_list = shopping_list1 + shopping_list2
+    assert len(combined_list.get_list()) == 2
+    assert combined_list.get_list()[0] == ingredient1
+    assert combined_list.get_list()[1] == ingredient2
+    assert shopping_list1.get_list()[0] == ingredient1
+    assert shopping_list2.get_list()[0] == ingredient2
+    

@@ -2,7 +2,9 @@ from src.classes.ingredient.ingredient import Ingredient
 from src.classes.recipe.recipe import Recipe
 
 class ShoppingList:
-    def __init__(self, _items: list[tuple[Ingredient, str]]):
+    def __init__(self, _items: list[tuple[Ingredient, str]] = None):
+        if(_items is None):
+            _items = []
         self._items = _items
 
     def add_recipe(self, recipe: Recipe, portions: float):
