@@ -33,7 +33,7 @@ class ShoppingList:
         
         return list_of_ingredients
     
-    def __add__(self, other: ShoppingList):
+    def __add__(self, other: 'ShoppingList'):
         new_items = self._items + other._items
         return ShoppingList(new_items)
     
